@@ -1,6 +1,7 @@
 #include <IRremoteESP8266.h> 
 #include <IRac.h> 
 #include <IRutils.h> 
+#include <HardwareSerial.h>
 
 /*
 Sketch works for the following Air conditioning brands 
@@ -9,29 +10,36 @@ Sketch works for the following Air conditioning brands
 
 */
 #define serial_prints
-
-const uint16_t Ir_send_pin = 4; 
+HardwareSerial SerialPort(2);
+const uint16_t Ir_send_pin = 17; 
 IRac air_conditioner(Ir_send_pin);
 
 void setup() {
-  Serial.begin(115200);
-  delay(200);
-  
-  air_conditioner.next.protocol = decode_type_t ::SAMSUNG; // specify the AC brand you are working with here 
+  Serial.begin(115200,SERIAL_8N1,16,17);
+
+  delay(200); 
 }
 
 void loop() {
-  for (int i = 1; i < kLastDecodeType; i++) {
+    air_conditioner.next.protocol = decode_type_t ::GREE; // specify the AC brand you are working with here
+    for (int i = 1; i < kLastDecodeType; i++) {
     decode_type_t protocol = (decode_type_t)i;
     if(air_conditioner.isProtocolSupported(protocol)){
       #ifdef serial_prints
            Serial.println("This protocal is supported");
-           delay(2000);
+           delay(5000);
       #endif  
       air_conditioner.next.protocol = protocol;     
+      Serial.println("we are in the loop");
+      delay(2000); 
+      off_ac();
+      on_ac();
+      delay(1000);
+      on_ac();      
     }
-  }  
-}
+
+ } 
+ }
 
 void on_ac(){
       air_conditioner.next.power = true;
