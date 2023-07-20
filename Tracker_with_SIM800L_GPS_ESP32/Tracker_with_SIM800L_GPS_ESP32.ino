@@ -6,7 +6,7 @@ const size_t BUFSIZE = 300;
 char f_buffer[BUFSIZE];
 float *f_buf = (float*)f_buffer;
 //----------------------------------------------------------
-#define SMS_TARGET  "+256763437494"
+#define SMS_TARGET  "+256770777605"
 #define TINY_GSM_MODEM_SIM800      // Modem is SIM800
 #define TINY_GSM_RX_BUFFER   1024  // Set RX buffer to 1Kb
 #include <TinyGsmClient.h>
@@ -30,8 +30,8 @@ void send_gps_data();
 
 void setup() {
   SerialMon.begin(115200); 
-  SerialAT.begin(115200, SERIAL_8N1,16,17);
-  neogps.begin(9600, SERIAL_8N1,25,26);
+  SerialAT.begin(115200, SERIAL_8N1,17,16);
+  neogps.begin(9600, SERIAL_8N1,27,26);
   delay(3000);
   SerialMon.println("Initializing modem...");
   modem.restart();
@@ -76,7 +76,7 @@ void send_gps_data(){
   location += String(gps.location.lng(),6);
   location +="/"; 
   SerialMon.println(location);
-  if(co_ordinates >= 3){
+  if(co_ordinates >= 10){
     co_ordinates =0;
     if(modem.sendSMS(SMS_TARGET,location)){SerialMon.println(location);}
     else{SerialMon.println("SMS failed to send");}

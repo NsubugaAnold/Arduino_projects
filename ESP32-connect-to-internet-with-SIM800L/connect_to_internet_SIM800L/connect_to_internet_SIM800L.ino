@@ -9,7 +9,7 @@ TinyGsm modem(Serialgsm);
 
 void setup(){
     Serial.begin(115200);
-    Serialgsm.begin(115200,SERIAL_8N1,26,27);
+    Serialgsm.begin(9600,SERIAL_8N1,16,17);
     gsm_setup(); 
     
 }
