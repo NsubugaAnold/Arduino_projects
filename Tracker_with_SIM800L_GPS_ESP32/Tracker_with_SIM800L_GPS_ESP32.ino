@@ -6,7 +6,7 @@ const size_t BUFSIZE = 300;
 char f_buffer[BUFSIZE];
 float *f_buf = (float*)f_buffer;
 //----------------------------------------------------------
-#define SMS_TARGET  "+256770777605"
+#define SMS_TARGET  "+256xxxxxxxx"// phone number with country code 
 #define TINY_GSM_MODEM_SIM800      // Modem is SIM800
 #define TINY_GSM_RX_BUFFER   1024  // Set RX buffer to 1Kb
 #include <TinyGsmClient.h>
