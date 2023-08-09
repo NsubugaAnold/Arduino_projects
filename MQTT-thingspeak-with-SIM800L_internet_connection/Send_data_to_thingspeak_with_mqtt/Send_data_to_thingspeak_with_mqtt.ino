@@ -7,7 +7,7 @@
 #define Serialgsm Serial1
 const char apn[] = "internet"; // apn for uganda 
 const char* broker = "mqtt3.thingspeak.com"; 
-const char clientID[] = ""; 
+const char clientID[] = ""; d
 const char mqttUserName[] = ""; 
 const char mqttpassword[] = ""; 
 

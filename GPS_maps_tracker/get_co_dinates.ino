@@ -44,7 +44,7 @@ void send_sms()
   location += String(gps.location.lng(),6);
   location +="/"; 
   Serial.println(location);
-    if(co_ordinates == 40)
+    if(co_ordinates == 2)
     {
             co_ordinates =0; 
             Serial.println(location); 
